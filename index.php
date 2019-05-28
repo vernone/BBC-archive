@@ -146,11 +146,11 @@
                 var sound = new THREE.PositionalAudio(listener);
 
                 audioLoader.load(path, function (buffer) {
-          			sound.setBuffer(buffer);
-          			sound.setRefDistance(20);
-          			sound.play();
+                sound.setBuffer(buffer);
+                sound.setRefDistance(20);
+                sound.play();
                 sound.setLoop(true);
-         				sound.setVolume(1);
+                sound.setVolume(1);
           			});
                 scene.add(object);
                 object.add(sound);
