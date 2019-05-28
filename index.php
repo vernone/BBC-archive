@@ -101,36 +101,35 @@
         var sphere = new THREE.SphereBufferGeometry(20, 32, 16);
 
         function init() {
-  				var overlay = document.getElementById('overlay');
-  				overlay.remove();
+  			var overlay = document.getElementById('overlay');
+  			overlay.remove();
+ 
+        camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10000);
+  			camera.position.set(0, 25, 0);
 
-  				camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10000);
-  				camera.position.set(0, 25, 0);
+  			var listener = new THREE.AudioListener();
+  			camera.add(listener);
 
-  				var listener = new THREE.AudioListener();
-  				camera.add(listener);
-
-  			 	scene = new THREE.Scene();
-
-  				light = new THREE.DirectionalLight(0xffffff);
-  				scene.add( new THREE.AmbientLight( Math.random() * 0xff0000 ) );
-  				light.position.set(0, 0.5, 1).normalize();
-  				scene.add(light);
-          var startAngle = 0;
-          var radius = 70;
-          var diameter = radius*4;
-          var centerX=-5;
-          var centerZ= 0.5;
-          var mathpi = Math.PI/180;
-          var startRadians = startAngle + mathpi;
-          var arraysamples = <?php echo json_encode($samples);?>;
-          var arraynomsamples = <?php echo json_encode($nomsamples);?>;
-          var rangee = Math.round((Object.keys(arraysamples).length) / 5);
-          var incrementAngle = 360/totalson;
-          var incrementRadians = incrementAngle * mathpi;
-          var totalson = 5;
-          var yp = 30;
-          var audioLoader = new THREE.AudioLoader();
+ 			 	scene = new THREE.Scene();
+ 				light = new THREE.DirectionalLight(0xffffff);
+ 				scene.add( new THREE.AmbientLight( Math.random() * 0xff0000 ) );
+ 				light.position.set(0, 0.5, 1).normalize();
+ 				scene.add(light);
+        var startAngle = 0;
+        var radius = 70;
+        var diameter = radius*4;
+        var centerX=-5;
+        var centerZ= 0.5;
+        var mathpi = Math.PI/180;
+        var startRadians = startAngle + mathpi;
+        var arraysamples = <?php echo json_encode($samples);?>;
+        var arraynomsamples = <?php echo json_encode($nomsamples);?>;
+        var rangee = Math.round((Object.keys(arraysamples).length) / 5);
+        var incrementAngle = 360/totalson;
+        var incrementRadians = incrementAngle * mathpi;
+        var totalson = 5;
+        var yp = 30;
+        var audioLoader = new THREE.AudioLoader();
 
           for ( var n = 0; n < rangee; n ++) {
             for ( var i = 0; i < totalson; i ++ ) {
@@ -147,11 +146,11 @@
                 var sound = new THREE.PositionalAudio(listener);
 
                 audioLoader.load(path, function (buffer) {
-          				  sound.setBuffer(buffer);
-          					sound.setRefDistance(20);
-          					sound.play();
-          				  sound.setLoop(true);
-          					sound.setVolume(1);
+          			sound.setBuffer(buffer);
+          			sound.setRefDistance(20);
+          			sound.play();
+          		  sound.setLoop(true);
+         				sound.setVolume(1);
           			});
                 scene.add(object);
                 object.add(sound);
