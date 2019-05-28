@@ -154,7 +154,7 @@
           					sound.setVolume(1);
           			});
                 scene.add(object);
-                object.add(sound[i]);
+                object.add(sound);
                 startRadians += incrementRadians;
             }
 
