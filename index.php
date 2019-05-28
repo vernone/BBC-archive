@@ -151,7 +151,7 @@
                 sound.play();
                 sound.setLoop(true);
                 sound.setVolume(1);
-          			});
+                });
                 scene.add(object);
                 object.add(sound);
                 startRadians += incrementRadians;
