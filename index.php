@@ -54,17 +54,11 @@
     $requete2 = $requete.$filter_lieu;
   }
 
-
-  // echo $requete;
   $statement = $conn->query($requete);
   $samples = $statement->fetchAll(PDO::FETCH_ASSOC);
 
   $statement = $conn->query($requete2);
   $nomsamples = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-  //   foreach ($nomsamples as $element) {
-  //     echo '<p>'.$element['name'].'</p>';
-  // }
 
 ?>
 
@@ -85,13 +79,7 @@
 
   </head>
   <body>
-
-    <!-- <div class="title">
-      <h1>
-          BBC ARCHIVE PROJECT
-      </h1>
-    </div> -->
-
+    
     <div id="overlay">
   		<div>
   			<button id="startButton">Pièce n°1</button>
@@ -137,16 +125,12 @@
           var startRadians = startAngle + mathpi;
           var arraysamples = <?php echo json_encode($samples);?>;
           var arraynomsamples = <?php echo json_encode($nomsamples);?>;
-          // var rangee = Math.round((Object.keys(arraysamples).length) / 5);
-          var rangee = 2;
+          var rangee = Math.round((Object.keys(arraysamples).length) / 5);
           var incrementAngle = 360/totalson;
           var incrementRadians = incrementAngle * mathpi;
           var totalson = 5;
           var yp = 30;
           var audioLoader = new THREE.AudioLoader();
-          // var premiersample = Object.values(arraynomsamples[1]);
-
-
 
           for ( var n = 0; n < rangee; n ++) {
             for ( var i = 0; i < totalson; i ++ ) {
@@ -160,12 +144,6 @@
                 object.position.y = yp;
                 var a = n * 5 + i;
                 var path = "sounds/" + arraynomsamples[a].reference + arraynomsamples[a].name + ".wav";
-                console.log('le path est ' + path);
-
-                // var markers = [];
-                // for (var i = 0; i < coords.length; ++i) {
-                //     markers[i] = "some stuff";
-                // }
                 var sound = new THREE.PositionalAudio(listener);
 
                 audioLoader.load(path, function (buffer) {
@@ -235,33 +213,33 @@
           ///// arrow key
           document.addEventListener('keydown',onDocumentKeyDown,false);
           function onDocumentKeyDown(event){
-          var delta = 200;
-          event = event || window.event;
-          var keycode = event.keyCode;
-          switch(keycode){
-          case 37 :
-          camera.position.x = camera.position.x - delta;
-          break;
-          case 38 :
-          camera.position.z = camera.position.z - delta;
-          break;
-          case 39 :
-          camera.position.x = camera.position.x + delta;
-          break;
-          case 40 :
-          camera.position.z = camera.position.z + delta;
-          break;
-          }
+              var delta = 200;
+              event = event || window.event;
+              var keycode = event.keyCode;
+              switch(keycode){
+              case 37 :
+              camera.position.x = camera.position.x - delta;
+              break;
+              case 38 :
+              camera.position.z = camera.position.z - delta;
+              break;
+              case 39 :
+              camera.position.x = camera.position.x + delta;
+              break;
+              case 40 :
+              camera.position.z = camera.position.z + delta;
+              break;
+            }
           document.addEventListener('keyup',onDocumentKeyUp,false);
-          }
+           }
           function onDocumentKeyUp(event){
           document.removeEventListener('keydown',onDocumentKeyDown,false);
-          }
+            }
 
           function animate() {
           requestAnimationFrame(animate);
           render();
-          }
+            }
 
           function render() {
           camera.updateProjectionMatrix();
@@ -269,14 +247,9 @@
 
           controls.update(delta);
 
-          // material1.emissive.b = analyser1.getAverageFrequency() / 256;
-
-
           renderer.render(scene, camera);
           }
 
           </script>
-
-
   </body>
 </html>
