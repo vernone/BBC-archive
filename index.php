@@ -149,7 +149,7 @@
           			sound.setBuffer(buffer);
           			sound.setRefDistance(20);
           			sound.play();
-          		  sound.setLoop(true);
+                sound.setLoop(true);
          				sound.setVolume(1);
           			});
                 scene.add(object);
